@@ -1,0 +1,6 @@
+.vs/ 
+*.suo 
+*.dtbcache.v2 
+*.vsidx 
+**/obj/ 
+**/bin/ 

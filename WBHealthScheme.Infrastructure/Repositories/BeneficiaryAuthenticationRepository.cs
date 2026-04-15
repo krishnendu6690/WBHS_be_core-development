@@ -1,0 +1,62 @@
+﻿using Microsoft.EntityFrameworkCore;
+using WBHealthScheme.Application.Dtos;
+using WBHealthScheme.Application.Interfaces;
+using WBHealthScheme.Infrastructure.Persistence;
+namespace WBHealthScheme.Infrastructure.Repositories
+{
+    public class BeneficiaryAuthenticationRepository :
+    IBeneficiaryAuthenticationRepository
+    {
+        private readonly WBHSDbContext _context;
+        public BeneficiaryAuthenticationRepository(WBHSDbContext context)
+        {
+            _context = context;
+        }
+        public async Task<List<BeneficiaryAuthenticationResponse>>
+        GetBeneficiaryByMobileAsync(string mobileNumber)
+        {
+            var selfData = await _context.EmployeeBasicInfos
+            .Where(x => x.MobileNo == mobileNumber)
+            .Select(x => new BeneficiaryAuthenticationResponse
+            {
+                ApplicationId = x.AppId,
+                EmployeeId = x.EmpId,
+                BeneficiaryId = x.EmpId,
+                BeneficiaryName = (x.EmpFirstName ?? "") + " " +
+(x.EmpLastName ?? ""),
+                MobileNumber = x.MobileNo,
+                DateOfBirth = x.EmpDob,
+                MemberType = "SELF",
+                Relation = "Self",
+                RegistrationStatus = x.IsExists,
+                ValidUpto = null,
+                BloodGroup = null,
+                PhotoPath = null
+            })
+.ToListAsync();
+            var familyData = await (from family in _context.EmployeeFamilyMembers
+                                    join photo in _context.WbhsFamilyPhotoSignatures
+                                    on new { family.AppId, family.IdNo } equals new { photo.AppId, photo.IdNo }
+                                    into photoJoin
+                                    from photo in photoJoin.DefaultIfEmpty()
+                                    where family.MobileNo == mobileNumber   
+                                    select new BeneficiaryAuthenticationResponse
+                                    {
+                                        ApplicationId = family.AppId,
+                                        EmployeeId = null,
+                                        BeneficiaryId = family.IdNo,
+                                        BeneficiaryName = family.Name,         
+                                        MobileNumber = family.MobileNo,         
+                                        DateOfBirth = family.Dob,
+                                        MemberType = "FAMILY",
+                                        Relation = family.MemberCode,           
+                                        RegistrationStatus = family.IsExists,
+                                        ValidUpto = family.ValidUpTo,
+                                        BloodGroup = family.BloodGroup,         
+                                        PhotoPath = photo != null ? photo.PhotoFtp : null
+                                    }).ToListAsync();
+
+            return selfData.Concat(familyData).ToList();
+        }
+    }
+}
