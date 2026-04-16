@@ -1,6 +1,6 @@
 namespace WBHealthScheme.Domain.Entities;
 
-public class MBUCTUnivBasicInfoOnline
+public class UnivBasicInfo
 {
     public string SLR_NO { get; set; }
     public string APP_ID { get; set; }
@@ -25,7 +25,7 @@ public class MBUCTUnivBasicInfoOnline
     public string bnk_nm { get; set; }
     public string bnk_br_nm { get; set; }
     public string bnk_ifsc { get; set; }
-    public string bnk_ac-no { get; set; } // renamed (hyphen issue)
+    public string bnk_ac_no { get; set; } // renamed (hyphen issue)
 
     public string IS_EXISTS { get; set; }
     public string Memo_No { get; set; }

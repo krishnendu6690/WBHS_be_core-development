@@ -39,7 +39,7 @@ namespace WBHealthScheme.Api.Controllers
            _service.GetBeneficiaryByUniqueIdAsync(uniqueId);
 
             
-            return Ok(ApiResponse<List<BeneficiaryAuthenticationResponse>>
+            return Ok(ApiResponse<List<UnivBeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
         }
     }
