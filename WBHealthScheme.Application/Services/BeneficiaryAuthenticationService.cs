@@ -26,12 +26,12 @@ namespace WBHealthScheme.Application.Services
                 throw new NotFoundException("Beneficiary not found");
             return result;
         }
-        public async Task<List<BeneficiaryAuthenticationResponse>>
+        public async Task<List<UnivBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByUniqueIdAsync(string uniqueId)
         {
-            if (string.IsNullOrWhiteSpace(mobileNumber))
+            if (string.IsNullOrWhiteSpace(uniqueId))
                 throw new BusinessRuleException("Unique ID is required");
-            if (mobileNumber.Length != 11| !mobileNumber.All(char.IsDigit))
+            if (uniqueId.Length != 11)
                 throw new BusinessRuleException("Invalid Unique ID");
             var result = await
                 _repository.GetBeneficiaryByUniqueIdAsync(uniqueId);

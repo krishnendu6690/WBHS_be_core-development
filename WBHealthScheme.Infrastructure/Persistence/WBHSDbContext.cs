@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WBHealthScheme.Domain.Entities;
+using WBHealthScheme.Application.Dtos;
 
 namespace WBHealthScheme.Infrastructure.Persistence;
 
@@ -196,5 +197,8 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.EmpFirstName).HasColumnName("empFirstName").HasMaxLength(100);
             entity.Property(e => e.EmpLastName).HasColumnName("empLastName").HasMaxLength(100);
         });
+
+        modelBuilder.Entity<UnivBeneficiaryAuthenticationResponse>().HasNoKey();
+        
     }
 }
