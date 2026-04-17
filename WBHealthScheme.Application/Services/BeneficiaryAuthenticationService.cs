@@ -26,18 +26,20 @@ namespace WBHealthScheme.Application.Services
                 throw new NotFoundException("Beneficiary not found");
             return result;
         }
-        public async Task<List<BeneficiaryAuthenticationResponse>>
-        GetBeneficiaryByUniqueIdAsync(string uniqueId)
-        {
-            if (string.IsNullOrWhiteSpace(mobileNumber))
-                throw new BusinessRuleException("Unique ID is required");
-            if (mobileNumber.Length != 11| !mobileNumber.All(char.IsDigit))
-                throw new BusinessRuleException("Invalid Unique ID");
-            var result = await
-                _repository.GetBeneficiaryByUniqueIdAsync(uniqueId);
-            if (result == null || !result.Any())
-                throw new NotFoundException("Beneficiary not found");
-            return result;
-        }
+         public async Task<List<Beneiciary_ward_resp_broto>>
+ GetwardByappAsync(string app_ID)
+ {
+     if (string.IsNullOrWhiteSpace(app_ID))
+         throw new BusinessRuleException("Enrollment ID is required");
+     if (app_ID.Length != 10 || !app_ID.All(char.IsDigit))
+         throw new BusinessRuleException("Invalid Enrollment ID");
+     var result = await
+         _repository.GetwardByappAsync(app_ID);
+     if (result == null || !result.Any())
+         throw new NotFoundException("Enrollment ID not found");
+     return result;
+ }
+        
+        
     }
 }
