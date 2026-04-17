@@ -2,6 +2,8 @@
 using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Interfaces;
 using WBHealthScheme.Infrastructure.Persistence;
+using Microsoft.Data.SqlClient;
+
 namespace WBHealthScheme.Infrastructure.Repositories
 {
     public class BeneficiaryAuthenticationRepository :
@@ -59,6 +61,14 @@ namespace WBHealthScheme.Infrastructure.Repositories
             return selfData.Concat(familyData).ToList();
         }
 
+        public async Task<List<UnivBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryByUniqueIdAsync(string uniqueId)
+        {
+            return await _context.Set<UnivBeneficiaryAuthenticationResponse>()
+        .FromSqlRaw("EXEC GetUnivBeneficiaryAuthenticationByUniqueId @uniqueId",
+            new SqlParameter("@uniqueId", uniqueId))
+        .ToListAsync();
+        }
 public async Task<List<Beneiciary_ward_resp_broto>>
 GetwardByappAsync(string app_ID)
 {

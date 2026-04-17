@@ -3,18 +3,22 @@ namespace WBHealthScheme.Application.Dtos
     public class UnivBeneficiaryAuthenticationResponse
     {
         public string ApplicationId { get; set; }
-        public string EmployeeId { get; set; }
-        public string BeneficiaryId { get; set; }
-        public string BeneficiaryName { get; set; }
-        public string MobileNumber { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string MemberType { get; set; }
+        public string PanId { get; set; }
+        public string SlrNo { get; set; }
+        public string BenId { get; set; }
+        public string BenName { get; set; }
+        public string Age { get; set; }
+        public string IdNo { get; set; }
         public string Relation { get; set; }
+        public byte[] BenImgPhoto { get; set; }
+        public byte[] BenImgSign { get; set; }
+        public string PhotoFtp { get; set; }
+        public string SignFtp { get; set; }
         public string RegistrationStatus { get; set; }
-        public DateTime? ValidUpto { get; set; }
-        public string BloodGroup { get; set; }
-        public string PhotoPath { get; set; }
-        public string SignPath { get; set; }
+        public string WordName { get; set; }
+        public string WordTmc { get; set; }
+        public string WordGpb { get; set; }
+        public string EffectDate { get; set; }        
     }
 
 }
