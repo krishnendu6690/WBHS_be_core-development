@@ -31,7 +31,10 @@ namespace WBHealthScheme.Application.Services
         {
             if (string.IsNullOrWhiteSpace(uniqueId))
                 throw new BusinessRuleException("Unique ID is required");
-            if (uniqueId.Length != 11)
+            if (uniqueId.Length != 11 
+                || !uniqueId.Substring(0, 6).All(char.IsLetter) 
+                || !uniqueId.Substring(6, 4).All(char.IsDigit) 
+                ||!char.IsLetter(uniqueId[10]))
                 throw new BusinessRuleException("Invalid Unique ID");
             var result = await
                 _repository.GetBeneficiaryByUniqueIdAsync(uniqueId);
@@ -59,10 +62,28 @@ namespace WBHealthScheme.Application.Services
         {
             if (string.IsNullOrWhiteSpace(hrmsId))
                 throw new BusinessRuleException("HRMS ID is required");
-            if (hrmsId.Length != 11)
+            if (hrmsId.Length != 11 
+                || !hrmsId.Substring(0, 1).All(char.IsLetter) 
+                || !hrmsId.Substring(1, 10).All(char.IsDigit))
                 throw new BusinessRuleException("Invalid HRMS ID");
             var result = await
                 _repository.GetBeneficiaryByHrmsIdClgAsync(hrmsId);
+            if (result == null || !result.Any())
+                throw new NotFoundException("Beneficiary not found");
+            return result;
+        }
+
+        public async Task<List<PnhytEmpBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryByIosmsIdAsync(string iosmsId)
+        {
+            if (string.IsNullOrWhiteSpace(iosmsId))
+                throw new BusinessRuleException("IOSMS ID is required");
+            if (iosmsId.Length != 12 
+                || !iosmsId.Substring(0, 2).All(char.IsLetter) 
+                || !iosmsId.Substring(2).All(char.IsDigit))
+                throw new BusinessRuleException("Invalid IOSMS ID");
+            var result = await
+                _repository.GetBeneficiaryByIosmsIdAsync(iosmsId);
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;

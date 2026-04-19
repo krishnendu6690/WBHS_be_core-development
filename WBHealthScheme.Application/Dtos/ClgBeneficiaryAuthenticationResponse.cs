@@ -8,7 +8,7 @@ namespace WBHealthScheme.Application.Dtos
         public string BenId { get; set; }
         public string BenName { get; set; }
         public string Age { get; set; }
-        public string IdNo { get; set; }
+        public string? IdNo { get; set; }
         public string Relation { get; set; }
         public string PhotoFtp { get; set; }
         public string SignFtp { get; set; }

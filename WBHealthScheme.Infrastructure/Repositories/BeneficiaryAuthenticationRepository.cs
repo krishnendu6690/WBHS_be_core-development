@@ -93,5 +93,14 @@ namespace WBHealthScheme.Infrastructure.Repositories
             new SqlParameter("@hrmsId", hrmsId))
         .ToListAsync();
         }
+
+        public async Task<List<PnhytEmpBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryByIosmsIdAsync(string iosmsId)
+        {
+            return await _context.Set<PnhytEmpBeneficiaryAuthenticationResponse>()
+        .FromSqlRaw("EXEC GetPnhytEmpBeneficiaryAuthenticationByIosmsId @iosmsId",
+            new SqlParameter("@iosmsId", iosmsId))
+        .ToListAsync();
+        }
     }
 }

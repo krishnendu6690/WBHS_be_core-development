@@ -371,101 +371,109 @@ public class WBHSDbContext : DbContext
         
         modelBuilder.Entity<UnivOfficeDetails>(entity =>
         {
-        entity.Property(e => e.SlrNo)
-            .HasColumnName("SLR_NO")
-            .HasMaxLength(200)
-            .IsRequired();
+            entity.ToTable("MBUCT_Univ_Office_Details", "dbo");
 
-        entity.Property(e => e.AppId)
-            .HasColumnName("app_id")
-            .HasMaxLength(200)
-            .IsRequired();
+            entity.HasKey(e => e.SlrNo);
 
-        entity.Property(e => e.PanId)
-            .HasColumnName("PAN_ID")
-            .HasMaxLength(11)
-            .IsRequired();
+            entity.Property(e => e.SlrNo)
+                .HasColumnName("SLR_NO")
+                .HasMaxLength(200)
+                .IsRequired();
 
-        entity.Property(e => e.UnivNm)
-            .HasColumnName("univ_nm");
+            entity.Property(e => e.AppId)
+                .HasColumnName("app_id")
+                .HasMaxLength(200)
+                .IsRequired();
 
-        entity.Property(e => e.UnivDistCd)
-            .HasColumnName("univ_dist_cd")
-            .HasMaxLength(2);
+            entity.Property(e => e.PanId)
+                .HasColumnName("PAN_ID")
+                .HasMaxLength(11)
+                .IsRequired();
 
-        entity.Property(e => e.SubDivCd)
-            .HasColumnName("sub_div_cd")
-            .HasMaxLength(2);
+            entity.Property(e => e.UnivNm)
+                .HasColumnName("univ_nm");
 
-        entity.Property(e => e.BlockCd)
-            .HasColumnName("block_cd")
-            .HasMaxLength(2);
+            entity.Property(e => e.UnivDistCd)
+                .HasColumnName("univ_dist_cd")
+                .HasMaxLength(2);
 
-        entity.Property(e => e.UnivAddr)
-            .HasColumnName("univ_addr");
+            entity.Property(e => e.SubDivCd)
+                .HasColumnName("sub_div_cd")
+                .HasMaxLength(2);
 
-        entity.Property(e => e.Doj)
-            .HasColumnName("DOJ")
-            .HasColumnType("datetime");
+            entity.Property(e => e.BlockCd)
+                .HasColumnName("block_cd")
+                .HasMaxLength(2);
 
-        entity.Property(e => e.DesigType)
-            .HasColumnName("desig_type");
+            entity.Property(e => e.UnivAddr)
+                .HasColumnName("univ_addr");
 
-        entity.Property(e => e.Desig)
-            .HasColumnName("desig")
-            .HasMaxLength(3);
+            entity.Property(e => e.Doj)
+                .HasColumnName("DOJ")
+                .HasColumnType("datetime");
 
-        entity.Property(e => e.PayBand)
-            .HasColumnName("pay_band")
-            .HasMaxLength(2);
+            entity.Property(e => e.DesigType)
+                .HasColumnName("desig_type");
 
-        entity.Property(e => e.BandPay)
-            .HasColumnName("band_pay")
-            .HasMaxLength(15);
+            entity.Property(e => e.Desig)
+                .HasColumnName("desig")
+                .HasMaxLength(3);
 
-        entity.Property(e => e.WardName)
-            .HasColumnName("ward_name")
-            .HasMaxLength(200);
+            entity.Property(e => e.PayBand)
+                .HasColumnName("pay_band")
+                .HasMaxLength(2);
 
-        entity.Property(e => e.IsExists)
-            .HasColumnName("IS_EXISTS")
-            .HasMaxLength(1);
+            entity.Property(e => e.BandPay)
+                .HasColumnName("band_pay")
+                .HasMaxLength(15);
 
-        entity.Property(e => e.GdPay)
-            .HasColumnName("gd_pay")
-            .HasMaxLength(2);
+            entity.Property(e => e.WardName)
+                .HasColumnName("ward_name")
+                .HasMaxLength(200);
 
-        entity.Property(e => e.BasicPay)
-            .HasColumnName("basic_pay")
-            .HasMaxLength(15);
+            entity.Property(e => e.IsExists)
+                .HasColumnName("IS_EXISTS")
+                .HasMaxLength(1);
 
-        entity.Property(e => e.RopaType)
-            .HasColumnName("ropa_type")
-            .HasMaxLength(20);
+            entity.Property(e => e.GdPay)
+                .HasColumnName("gd_pay")
+                .HasMaxLength(2);
 
-        entity.Property(e => e.PayLavel)
-            .HasColumnName("pay_lavel")
-            .HasMaxLength(5);
+            entity.Property(e => e.BasicPay)
+                .HasColumnName("basic_pay")
+                .HasMaxLength(15);
 
-        entity.Property(e => e.BasicSal)
-            .HasColumnName("basic_sal")
-            .HasMaxLength(5);
+            entity.Property(e => e.RopaType)
+                .HasColumnName("ropa_type")
+                .HasMaxLength(20);
 
-        entity.Property(e => e.DeptCd)
-            .HasColumnName("dept_cd")
-            .HasMaxLength(3);
+            entity.Property(e => e.PayLavel)
+                .HasColumnName("pay_lavel")
+                .HasMaxLength(5);
 
-        entity.Property(e => e.WardTmc)
-            .HasColumnName("ward_tmc")
-            .HasMaxLength(200);
+            entity.Property(e => e.BasicSal)
+                .HasColumnName("basic_sal")
+                .HasMaxLength(5);
 
-        entity.Property(e => e.WardGpb)
-            .HasColumnName("ward_gpb")
-            .HasMaxLength(200);
+            entity.Property(e => e.DeptCd)
+                .HasColumnName("dept_cd")
+                .HasMaxLength(3);
+
+            entity.Property(e => e.WardTmc)
+                .HasColumnName("ward_tmc")
+                .HasMaxLength(200);
+
+            entity.Property(e => e.WardGpb)
+                .HasColumnName("ward_gpb")
+                .HasMaxLength(200);
         });
 
         modelBuilder.Entity<UnivfamilyDetails>(entity =>
         {
+            entity.ToTable("MBUCT_Univ_familyDetails", "dbo");
+
+            entity.HasKey(e => e.SlrNo);
+
             entity.Property(e => e.SlrNo)
                 .HasColumnName("SLR_NO")
                 .HasMaxLength(200)
@@ -599,6 +607,8 @@ public class WBHSDbContext : DbContext
         modelBuilder.Entity<UnivBeneficiaryAuthenticationResponse>().HasNoKey();
 
         modelBuilder.Entity<ClgBeneficiaryAuthenticationResponse>().HasNoKey();
+
+        modelBuilder.Entity<PnhytEmpBeneficiaryAuthenticationResponse>().HasNoKey();
 
     }
 }
