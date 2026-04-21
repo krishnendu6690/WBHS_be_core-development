@@ -610,5 +610,7 @@ public class WBHSDbContext : DbContext
 
         modelBuilder.Entity<PnhytEmpBeneficiaryAuthenticationResponse>().HasNoKey();
 
+        modelBuilder.Entity<PnhytPenBeneficiaryAuthenticationResponse>().HasNoKey();
+
     }
 }

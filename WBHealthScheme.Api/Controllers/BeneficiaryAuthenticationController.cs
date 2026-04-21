@@ -71,5 +71,15 @@ namespace WBHealthScheme.Api.Controllers
             return Ok(ApiResponse<List<PnhytEmpBeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
         }
+
+        [HttpGet("pnhytPen/{*appId}")]
+        public async Task<IActionResult> GetByPnhytPenAppId(string appId)
+        {
+            var result = await
+            _service.GetBeneficiaryPnhytPenByAppIdAsync(appId);
+
+            return Ok(ApiResponse<List<PnhytPenBeneficiaryAuthenticationResponse>>
+                .Ok(result, "Beneficiary fetched successfully"));
+        }
     }
 }

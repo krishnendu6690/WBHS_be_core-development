@@ -17,5 +17,8 @@ namespace WBHealthScheme.Application.Interfaces
 
         Task<List<PnhytEmpBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByIosmsIdAsync(string iosmsId);
+
+        Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryPnhytPenByAppIdAsync(string appId);
     }
 }

@@ -26,6 +26,7 @@ namespace WBHealthScheme.Application.Services
                 throw new NotFoundException("Beneficiary not found");
             return result;
         }
+        
         public async Task<List<UnivBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByUniqueIdAsync(string uniqueId)
         {
@@ -88,7 +89,26 @@ namespace WBHealthScheme.Application.Services
                 throw new NotFoundException("Beneficiary not found");
             return result;
         }
-        
+
+        public async Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryPnhytPenByAppIdAsync(string appId)
+        {
+            if (string.IsNullOrWhiteSpace(appId))
+                throw new BusinessRuleException("App ID is required");
+            appId = Uri.UnescapeDataString(appId);
+            if (appId.Length != 17
+                || appId[3] != '/'
+                || appId[7] != '/'
+                || !appId.Substring(0, 3).All(char.IsLetter)
+                || !appId.Substring(4, 3).All(char.IsLetter)
+                || !appId.Substring(8, 9).All(char.IsDigit))
+                throw new BusinessRuleException("Invalid App ID");
+            var result = await
+                _repository.GetBeneficiaryPnhytPenByAppIdAsync(appId);
+            if (result == null || !result.Any())
+                throw new NotFoundException("Beneficiary not found");
+            return result;
+        }          
         
     }
 }

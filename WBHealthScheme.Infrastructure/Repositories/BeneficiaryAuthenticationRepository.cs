@@ -102,5 +102,14 @@ namespace WBHealthScheme.Infrastructure.Repositories
             new SqlParameter("@iosmsId", iosmsId))
         .ToListAsync();
         }
+
+         public async Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryPnhytPenByAppIdAsync(string appId)
+        {
+            return await _context.Set<PnhytPenBeneficiaryAuthenticationResponse>()
+        .FromSqlRaw("EXEC GetPnhytPenBeneficiaryAuthenticationByAppId @appId",
+            new SqlParameter("@appId", appId))
+        .ToListAsync();
+        }
     }
 }
