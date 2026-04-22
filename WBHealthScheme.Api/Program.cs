@@ -69,6 +69,8 @@ BeneficiaryAuthenticationRepository>();
 builder.Services.AddScoped<IBeneficiaryAuthenticationService,
 BeneficiaryAuthenticationService>();
 
+builder.Services.AddScoped<IRatelistReturnRepository, RateListReturnRepository>();
+builder.Services.AddScoped<IRatelistReturnService, RatelistReturnService>();
 
 var app = builder.Build();
 

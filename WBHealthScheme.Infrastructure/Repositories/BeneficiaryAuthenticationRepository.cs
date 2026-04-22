@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Interfaces;
 using WBHealthScheme.Infrastructure.Persistence;
@@ -39,39 +40,47 @@ namespace WBHealthScheme.Infrastructure.Repositories
                                     on new { family.AppId, family.IdNo } equals new { photo.AppId, photo.IdNo }
                                     into photoJoin
                                     from photo in photoJoin.DefaultIfEmpty()
-                                    where family.MobileNo == mobileNumber   
+                                    where family.MobileNo == mobileNumber
                                     select new BeneficiaryAuthenticationResponse
                                     {
                                         ApplicationId = family.AppId,
                                         EmployeeId = null,
                                         BeneficiaryId = family.IdNo,
-                                        BeneficiaryName = family.Name,         
-                                        MobileNumber = family.MobileNo,         
+                                        BeneficiaryName = family.Name,
+                                        MobileNumber = family.MobileNo,
                                         DateOfBirth = family.Dob,
                                         MemberType = "FAMILY",
-                                        Relation = family.MemberCode,           
+                                        Relation = family.MemberCode,
                                         RegistrationStatus = family.IsExists,
                                         ValidUpto = family.ValidUpTo,
-                                        BloodGroup = family.BloodGroup,         
+                                        BloodGroup = family.BloodGroup,
                                         PhotoPath = photo != null ? photo.PhotoFtp : null
                                     }).ToListAsync();
 
             return selfData.Concat(familyData).ToList();
         }
 
-public async Task<List<Beneiciary_ward_resp_broto>>
-GetwardByappAsync(string app_ID)
-{
-    var ward = await _context.EmployeeBasicInfos.Where(Y => Y.HrmsId == app_ID).
-        Select(Y => new Beneiciary_ward_resp_broto
+        public async Task<List<Beneiciary_ward_resp_broto>>
+        GetwardByappAsync(string app_ID)
         {
+            //var ward = await _context.EmployeeBasicInfos.Where(Y => Y.HrmsId == app_ID).
+            //Select(Y => new Beneiciary_ward_resp_broto
+            //{
             //wardtmc="TATA-"+x.WardTmc + ",GOVT-" + x.WardGovt + "PRIVATE-" + x.WardName
-            wardtmc=  "Tata Medical Center-"+Y.WardTmc,
-            wardgovt= "Government Hospital-"+Y.WardGovt,
-            wardname= "Other Private Empanelled Hospital-"+Y.WardName,
+            //wardtmc = "Tata Medical Center-" + Y.WardTmc,
+            //wardgovt = "Government Hospital-" + Y.WardGovt,
+            //wardname = "Other Private Empanelled Hospital-" + Y.WardName,
+            //}
+            //).ToListAsync();
+            //return ward.ToList();
+            var param = new SqlParameter("@BEN_HRMS_D", app_ID);
+            var result = await _context.BenefWardDetails
+                        .FromSqlRaw("EXEC GET_WBHS_BENEFICIARY_HRMSID @BEN_HRMS_D", param)
+                        .AsNoTracking()
+                        .ToListAsync();
+            return result;
+    
         }
-        ).ToListAsync();
-    return ward.ToList();
-}
+
     }
 }

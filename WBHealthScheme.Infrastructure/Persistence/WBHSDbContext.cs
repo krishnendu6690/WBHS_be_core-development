@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Domain.Entities;
 
 namespace WBHealthScheme.Infrastructure.Persistence;
@@ -7,6 +8,10 @@ public class WBHSDbContext : DbContext
 {
     public WBHSDbContext(DbContextOptions<WBHSDbContext> options) : base(options) { }
 
+    public DbSet<Beneiciary_ward_resp_broto> BenefWardDetails { get; set; }
+    
+    public DbSet<ReturnRatelistResponse> CodeDetails { get; set; }
+    
     public DbSet<WbhsApplicationIdEmpOnline> EmployeeApplications => Set<WbhsApplicationIdEmpOnline>();
     public DbSet<EmployeeBasicInfo> EmployeeBasicInfos => Set<EmployeeBasicInfo>();
     public DbSet<EmployeeOfficeLink> EmployeeOfficeLinks => Set<EmployeeOfficeLink>();
@@ -19,7 +24,8 @@ public class WBHSDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
+        modelBuilder.Entity<Beneiciary_ward_resp_broto>().HasNoKey();
+        modelBuilder.Entity<ReturnRatelistResponse>().HasNoKey();
         modelBuilder.Entity<WbhsApplicationIdEmpOnline>(entity =>
         {
             entity.ToTable("wbhs_APPLICATION_ID_EMP_ONLINE", "dbo");
