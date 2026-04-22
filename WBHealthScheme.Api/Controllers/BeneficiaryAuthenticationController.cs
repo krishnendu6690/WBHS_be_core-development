@@ -51,8 +51,6 @@ namespace WBHealthScheme.Api.Controllers
         return Ok(ApiResponse<List<Beneiciary_ward_resp_broto>>
         .Ok(result, "Enrollment fetched successfully"));
         
-        return Ok(ApiResponse<List<Beneiciary_ward_resp_broto>>
-            .Ok(result, "Enrollment fetched successfully"));
         }
 
         [HttpGet("clg/{hrmsId}")]
