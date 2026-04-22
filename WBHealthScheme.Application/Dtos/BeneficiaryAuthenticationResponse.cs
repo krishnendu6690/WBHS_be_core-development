@@ -15,4 +15,10 @@
         public string BloodGroup { get; set; }
         public string PhotoPath { get; set; }
     }
+    public class Beneiciary_ward_resp_broto
+    {
+    public string wardname {get; set;}
+    public string wardtmc { get; set; }
+    public string wardgovt { get; set; }
+   }
 }

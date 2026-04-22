@@ -32,14 +32,53 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("unique/{uniqueId}")]
+        [HttpGet("univ/{uniqueId}")]
         public async Task<IActionResult> GetByUniqueId(string uniqueId)
         {
             var result = await
-           _service.GetBeneficiaryByUniqueIdAsync(uniqueId);
+            _service.GetBeneficiaryByUniqueIdAsync(uniqueId);
 
-            
             return Ok(ApiResponse<List<UnivBeneficiaryAuthenticationResponse>>
+                .Ok(result, "Beneficiary fetched successfully"));
+        }
+
+        [HttpGet("APPID/{enrollmentid}")]
+        public async Task<IActionResult> GetwardByappid(string enrollmentid)
+        {
+        var result = await
+        _service.GetwardByappAsync(enrollmentid);
+        
+        return Ok(ApiResponse<List<Beneiciary_ward_resp_broto>>
+            .Ok(result, "Enrollment fetched successfully"));
+        }
+
+        [HttpGet("clg/{hrmsId}")]
+        public async Task<IActionResult> GetByHrmsId(string hrmsId)
+        {
+            var result = await
+            _service.GetBeneficiaryByHrmsIdClgAsync(hrmsId);
+
+            return Ok(ApiResponse<List<ClgBeneficiaryAuthenticationResponse>>
+                .Ok(result, "Beneficiary fetched successfully"));
+        }
+
+        [HttpGet("pnhytEmp/{iosmsId}")]
+        public async Task<IActionResult> GetByIosmsId(string iosmsId)
+        {
+            var result = await
+            _service.GetBeneficiaryByIosmsIdAsync(iosmsId);
+
+            return Ok(ApiResponse<List<PnhytEmpBeneficiaryAuthenticationResponse>>
+                .Ok(result, "Beneficiary fetched successfully"));
+        }
+
+        [HttpGet("pnhytPen/{*appId}")]
+        public async Task<IActionResult> GetByPnhytPenAppId(string appId)
+        {
+            var result = await
+            _service.GetBeneficiaryPnhytPenByAppIdAsync(appId);
+
+            return Ok(ApiResponse<List<PnhytPenBeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
         }
     }

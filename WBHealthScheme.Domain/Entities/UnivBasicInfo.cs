@@ -2,46 +2,40 @@ namespace WBHealthScheme.Domain.Entities;
 
 public class UnivBasicInfo
 {
-    public string SLR_NO { get; set; }
-    public string APP_ID { get; set; }
-    public string PAN_ID { get; set; }
+    public string SlrNo { get; set; }
+    public string AppId { get; set; }
+    public string PanId { get; set; }
 
-    public string UNIV_FirstName { get; set; }
-    public string UNIV_LastName { get; set; }
-    public DateTime? UNIV_Dob { get; set; }
+    public string UnivFirstName { get; set; }
+    public string UnivLastName { get; set; }
+    public DateTime? UnivDob { get; set; }
+    public string MtsStsCd { get; set; }
+    public string Sex { get; set; }
+    public string EmpDistCd { get; set; }
+    public string EmpAddr { get; set; }
+    public string PanVoterNo { get; set; }
+    public string MobileNo { get; set; }
+    public string EmailId { get; set; }
 
-    public string MTS_STS_CD { get; set; }
-    public string sex { get; set; }
-    public string EMP_DIST_CD { get; set; }
+    public string ResidencePhNo { get; set; }
+    public DateTime? Redate { get; set; }
 
-    public string empAddr { get; set; }
-    public string PAN_VOTER_NO { get; set; }
-    public string MOBILE_NO { get; set; }
-    public string EMAIL_ID { get; set; }
+    public string BnkNm { get; set; }
+    public string BnkBrNm { get; set; }
+    public string BnkIfsc { get; set; }
+    public string BnkAcNo { get; set; } // renamed (hyphen issue)
 
-    public string RESIDENCE_PH_NO { get; set; }
-    public DateTime? redate { get; set; }
-
-    public string bnk_nm { get; set; }
-    public string bnk_br_nm { get; set; }
-    public string bnk_ifsc { get; set; }
-    public string bnk_ac_no { get; set; } // renamed (hyphen issue)
-
-    public string IS_EXISTS { get; set; }
-    public string Memo_No { get; set; }
-    public DateTime? Memo_Date { get; set; }
-
-    public DateTime? DDO_VERIFY_DATE { get; set; }
-    public string Reject_Reason { get; set; }
-    public DateTime? DDO_reject_date { get; set; }
-
-    public string id_type { get; set; }
-    public DateTime? effect_date { get; set; }
-
-    public string bnk_micr { get; set; }
-    public string APPROVER_NAME { get; set; }
-    public string APPROVER_DESIG { get; set; }
-
-    public string reyear { get; set; }
-    public string Adhar_No { get; set; }
+    public string IsExists { get; set; }
+    public string MemoNo { get; set; }
+    public DateTime? MemoDate { get; set; }
+    public DateTime? DdoVerifyDate { get; set; }
+    public string RejectReason { get; set; }
+    public DateTime? DdoRejectDate { get; set; }
+    public string IdType { get; set; }
+    public DateTime? EffectDate { get; set; }
+    public string BnkMicr { get; set; }
+    public string ApproverName { get; set; }
+    public string ApproverDesig { get; set; }
+    public string Reyear { get; set; }
+    public string AdharNo { get; set; }
 }

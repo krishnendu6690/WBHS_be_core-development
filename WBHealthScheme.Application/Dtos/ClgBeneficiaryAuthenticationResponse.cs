@@ -1,9 +1,9 @@
 namespace WBHealthScheme.Application.Dtos
 {
-    public class UnivBeneficiaryAuthenticationResponse
+    public class ClgBeneficiaryAuthenticationResponse
     {
         public string ApplicationId { get; set; }
-        public string PanId { get; set; }
+        public string HrmsId { get; set; }
         public string SlrNo { get; set; }
         public string BenId { get; set; }
         public string BenName { get; set; }
