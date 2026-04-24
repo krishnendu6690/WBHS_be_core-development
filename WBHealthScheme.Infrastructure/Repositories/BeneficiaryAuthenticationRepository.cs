@@ -4,6 +4,7 @@ using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Interfaces;
 using WBHealthScheme.Infrastructure.Persistence;
 using Microsoft.Data.SqlClient;
+using WBHealthScheme.Application.dtos;
 
 namespace WBHealthScheme.Infrastructure.Repositories
 {
@@ -91,6 +92,9 @@ namespace WBHealthScheme.Infrastructure.Repositories
         .FromSqlRaw("EXEC GetUnivBeneficiaryAuthenticationByUniqueId @uniqueId",
             new SqlParameter("@uniqueId", uniqueId))
         .ToListAsync();
+        }
+
+        
         }        
 
         public async Task<List<ClgBeneficiaryAuthenticationResponse>>
@@ -111,13 +115,25 @@ namespace WBHealthScheme.Infrastructure.Repositories
         .ToListAsync();
         }
 
-         public async Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
-        GetBeneficiaryPnhytPenByAppIdAsync(string appId)
+        public async Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
+       GetBeneficiaryPnhytPenByAppIdAsync(string appId)
         {
             return await _context.Set<PnhytPenBeneficiaryAuthenticationResponse>()
         .FromSqlRaw("EXEC GetPnhytPenBeneficiaryAuthenticationByAppId @appId",
             new SqlParameter("@appId", appId))
         .ToListAsync();
+        }
+        
+        public async Task<List<EmpPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryEmpPenByAppIdAsync(string appliId)
+        {
+            var param = new SqlParameter("@APPID", appliId);
+            var result = await _context.EmpPenBeneficiaryFetchAppid
+                        .FromSqlRaw("EXEC GET_WBHS_BENEFICIARY_APP @APPID", param)
+                        .AsNoTracking()
+                        .ToListAsync();
+            return result;
+
         }
     }
 }

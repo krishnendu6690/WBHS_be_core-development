@@ -1,4 +1,5 @@
-﻿using WBHealthScheme.Application.Dtos;
+﻿using WBHealthScheme.Application.dtos;
+using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Exceptions;
 using WBHealthScheme.Application.Interfaces;
 namespace WBHealthScheme.Application.Services
@@ -26,19 +27,22 @@ namespace WBHealthScheme.Application.Services
                 throw new NotFoundException("Beneficiary not found");
             return result;
         }
-         public async Task<List<Beneiciary_ward_resp_broto>>
+
+        #region govt_emp_pen
+        public async Task<List<Beneiciary_ward_resp_broto>>
         GetwardByappAsync(string app_ID)
         {
             if (string.IsNullOrWhiteSpace(app_ID))
-            throw new BusinessRuleException("Enrollment ID is required");
+                throw new BusinessRuleException("Enrollment ID is required");
             if (app_ID.Length != 10 || !app_ID.All(char.IsDigit))
-            throw new BusinessRuleException("Invalid Enrollment ID");
+                throw new BusinessRuleException("Invalid Enrollment ID");
             var result = await
             _repository.GetwardByappAsync(app_ID);
             if (result == null || !result.Any())
-            throw new NotFoundException("Enrollment ID not found");
+                throw new NotFoundException("Enrollment ID not found");
             return result;
         }
+        #endregion
         
         public async Task<List<UnivBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByUniqueIdAsync(string uniqueId)
@@ -55,6 +59,9 @@ namespace WBHealthScheme.Application.Services
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;
+        }
+
+         
         } 
         
 
@@ -108,7 +115,28 @@ namespace WBHealthScheme.Application.Services
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;
-        }          
-        
+        }
+
+        public async Task<List<EmpPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryEmpPenByAppIdAsync(string appliId)
+        {
+            if (string.IsNullOrWhiteSpace(appliId))
+                throw new BusinessRuleException("App ID is required");
+            appliId = Uri.UnescapeDataString(appliId);
+            if (appliId.Length != 19
+                || appliId[2] != '/'
+                || appliId[6] != '/'
+                || appliId[9] != '/'
+                || !appliId.Substring(0, 2).All(char.IsLetter)
+                || !appliId.Substring(3, 3).All(char.IsLetter)
+                || !appliId.Substring(7, 2).All(char.IsDigit)
+                || !appliId.Substring(10, 9).All(char.IsDigit))
+                throw new BusinessRuleException("Invalid App ID"); 
+            var result = await
+                _repository.GetBeneficiaryEmpPenByAppIdAsync(appliId);
+            if (result == null || !result.Any())
+                throw new NotFoundException("Beneficiary not found");
+            return result;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace WBHealthScheme.Api.Controllers
             _service = service;
         }
 
-        [HttpGet("RATENAME/{Description}")]
+        [HttpGet("ratename/{Description}")]
 
         public async Task<IActionResult> GetRatelistByName(string Description)
         {

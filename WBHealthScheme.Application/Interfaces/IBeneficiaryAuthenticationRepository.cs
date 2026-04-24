@@ -1,4 +1,5 @@
-﻿using WBHealthScheme.Application.Dtos;
+﻿using WBHealthScheme.Application.dtos;
+using WBHealthScheme.Application.Dtos;
 namespace WBHealthScheme.Application.Interfaces
 {
     public interface IBeneficiaryAuthenticationRepository
@@ -20,5 +21,8 @@ namespace WBHealthScheme.Application.Interfaces
 
         Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
         GetBeneficiaryPnhytPenByAppIdAsync(string appId);
+
+        Task<List<EmpPenBeneficiaryAuthenticationResponse>>
+        GetBeneficiaryEmpPenByAppIdAsync(string appliId);
     }
 }
