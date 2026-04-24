@@ -24,5 +24,8 @@ namespace WBHealthScheme.Application.Interfaces
 
         Task<List<EmpPenBeneficiaryAuthenticationResponse>>
         GetBeneficiaryEmpPenByAppIdAsync(string appliId);
+
+        Task<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
+        GetAllBeneficiaryByMobileAsync(string mobNumber);
     }
 }
