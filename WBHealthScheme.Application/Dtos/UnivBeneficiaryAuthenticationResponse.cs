@@ -16,7 +16,7 @@ namespace WBHealthScheme.Application.Dtos
         public string WordName { get; set; }
         public string WordTmc { get; set; }
         public string WordGpb { get; set; }
-        public string EffectDate { get; set; }        
+        public string? EffectDate { get; set; }        
     }
 
 }

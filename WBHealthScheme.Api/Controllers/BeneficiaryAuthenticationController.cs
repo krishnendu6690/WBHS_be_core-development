@@ -87,16 +87,24 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("govtemppen/{appliId}")]
-        public async Task<IActionResult> GetbyAppliID(string appliId)
+        [HttpGet("govtEmpPen/{appId}")]
+        public async Task<IActionResult> GetbyAppliID(string appId)
         {
-            var result = await _service.GetBeneficiaryEmpPenByAppIdAsync(appliId);
+            var result = await _service.GetBeneficiaryEmpPenByAppIdAsync(appId);
 
             return Ok(ApiResponse<List<EmpPenBeneficiaryAuthenticationResponse>>
             .Ok(result, "Enrollment fetched successfully"));
         }
         
-        
+        [HttpGet("mobileNumber/{mobNumber}")]
+        public async Task<IActionResult> GetByMobileAll(string mobNumber)
+        {
+            var result = await
+            _service.GetAllBeneficiaryByMobileAsync(mobNumber);
+            
+            return Ok(ApiResponse<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
+                .Ok(result, "Beneficiary fetched successfully"));
+        }
 
     }
 }

@@ -92,10 +92,7 @@ namespace WBHealthScheme.Infrastructure.Repositories
         .FromSqlRaw("EXEC GetUnivBeneficiaryAuthenticationByUniqueId @uniqueId",
             new SqlParameter("@uniqueId", uniqueId))
         .ToListAsync();
-        }
-
-        
-        }        
+        }       
 
         public async Task<List<ClgBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByHrmsIdClgAsync(string hrmsId)
@@ -125,9 +122,9 @@ namespace WBHealthScheme.Infrastructure.Repositories
         }
         
         public async Task<List<EmpPenBeneficiaryAuthenticationResponse>>
-        GetBeneficiaryEmpPenByAppIdAsync(string appliId)
+        GetBeneficiaryEmpPenByAppIdAsync(string appId)
         {
-            var param = new SqlParameter("@APPID", appliId);
+            var param = new SqlParameter("@APPID", appId);
             var result = await _context.EmpPenBeneficiaryFetchAppid
                         .FromSqlRaw("EXEC GET_WBHS_BENEFICIARY_APP @APPID", param)
                         .AsNoTracking()
@@ -135,5 +132,14 @@ namespace WBHealthScheme.Infrastructure.Repositories
             return result;
 
         }
+
+        public async Task<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
+        GetAllBeneficiaryByMobileAsync(string mobNumber)
+        {
+            return await _context.Set<AllBeneficiaryAuthenticationResponseByMobileNo>()
+        .FromSqlRaw("EXEC GetAllBeneficiaryAuthenticationByMobileNumber @mobileNo",
+            new SqlParameter("@mobileNo", mobNumber))
+        .ToListAsync();
+        }  
     }
 }

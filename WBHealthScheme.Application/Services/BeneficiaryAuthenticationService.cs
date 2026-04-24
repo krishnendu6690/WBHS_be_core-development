@@ -59,12 +59,9 @@ namespace WBHealthScheme.Application.Services
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;
-        }
-
-         
-        } 
+        }        
+      
         
-
         public async Task<List<ClgBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByHrmsIdClgAsync(string hrmsId)
         {
@@ -134,6 +131,20 @@ namespace WBHealthScheme.Application.Services
                 throw new BusinessRuleException("Invalid App ID"); 
             var result = await
                 _repository.GetBeneficiaryEmpPenByAppIdAsync(appliId);
+            if (result == null || !result.Any())
+                throw new NotFoundException("Beneficiary not found");
+            return result;
+        }
+
+        public async Task<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
+        GetAllBeneficiaryByMobileAsync(string mobNumber)
+        {
+            if (string.IsNullOrWhiteSpace(mobNumber))
+                throw new BusinessRuleException("Mobile number is required");
+            if (mobNumber.Length != 10 || !mobNumber.All(char.IsDigit))
+                throw new BusinessRuleException("Invalid mobile number");
+            var result = await
+                _repository.GetAllBeneficiaryByMobileAsync(mobNumber);
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;
