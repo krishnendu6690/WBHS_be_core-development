@@ -15,7 +15,7 @@ namespace WBHealthScheme.Api.Controllers
         {
             _service = service;
         }
-        [HttpGet("mobile/{mobileNumber}")]
+        /*[HttpGet("mobile/{mobileNumber}")]
         public async Task<IActionResult> GetByMobile(string mobileNumber)
         {
             var result = await
@@ -31,9 +31,9 @@ namespace WBHealthScheme.Api.Controllers
             //});
             return Ok(ApiResponse<List<BeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
-        }
+        }*/
 
-        [HttpGet("univ/{unique-id}")]
+        [HttpGet("univ/{uniqueId}")]
         public async Task<IActionResult> GetByUniqueId(string uniqueId)
         {
             var result = await
@@ -43,21 +43,18 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("govtemp/{hrms-id}")]
+        [HttpGet("govtemp/{hrmsId}")]
         public async Task<IActionResult> GetwardByappid(string hrmsid)
         {
             var result = await
             _service.GetWardByAppIdAsync(hrmsid);
 
             return Ok(ApiResponse<List<BeneficiaryWardRespBroto>>
-            .Ok(result, "Enrollment fetched successfully"));
-        return Ok(ApiResponse<List<BeneficiaryWardRespBroto>>
-        .Ok(result, "Enrollment fetched successfully"));
-        
+            .Ok(result, "Enrollment fetched successfully")); 
         }
 
 
-        [HttpGet("clg/{hrms-id}")]
+        [HttpGet("clg/{hrmsId}")]
         public async Task<IActionResult> GetByHrmsId(string hrmsId)
         {
             var result = await
@@ -67,7 +64,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("pnhytEmp/{iosms-id}")]
+        [HttpGet("pnhytEmp/{iosmsId}")]
         public async Task<IActionResult> GetByIosmsId(string iosmsId)
         {
             var result = await
@@ -77,7 +74,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("pnhytPen/{*app-id}")]
+        [HttpGet("pnhytPen/{*appId}")]
         public async Task<IActionResult> GetByPnhytPenAppId(string appId)
         {
             var result = await
@@ -87,7 +84,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("govtEmpPen/{app-id}")]
+        [HttpGet("govtEmpPen/{appId}")]
         public async Task<IActionResult> GetbyAppliID(string appId)
         {
             var result = await _service.GetBeneficiaryEmpPenByAppIdAsync(appId);
@@ -96,11 +93,11 @@ namespace WBHealthScheme.Api.Controllers
             .Ok(result, "Enrollment fetched successfully"));
         }
         
-        [HttpGet("mobileNumber/{mob-number}")]
-        public async Task<IActionResult> GetByMobileAll(string mobNumber)
+        [HttpGet("mobile-Number/{mobileNumber}")]
+        public async Task<IActionResult> GetByMobileAll(string mobileNumber)
         {
             var result = await
-            _service.GetAllBeneficiaryByMobileAsync(mobNumber);
+            _service.GetAllBeneficiaryByMobileAsync(mobileNumber);
             
             return Ok(ApiResponse<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
                 .Ok(result, "Beneficiary fetched successfully"));
