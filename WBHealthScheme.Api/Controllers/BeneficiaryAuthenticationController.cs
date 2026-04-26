@@ -47,11 +47,11 @@ namespace WBHealthScheme.Api.Controllers
         public async Task<IActionResult> GetwardByappid(string hrmsid)
         {
             var result = await
-            _service.GetwardByappAsync(hrmsid);
+            _service.GetWardByAppIdAsync(hrmsid);
 
-            return Ok(ApiResponse<List<Beneiciary_ward_resp_broto>>
+            return Ok(ApiResponse<List<BeneficiaryWardRespBroto>>
             .Ok(result, "Enrollment fetched successfully"));
-        return Ok(ApiResponse<List<Beneiciary_ward_resp_broto>>
+        return Ok(ApiResponse<List<BeneficiaryWardRespBroto>>
         .Ok(result, "Enrollment fetched successfully"));
         
         }

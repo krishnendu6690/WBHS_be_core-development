@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Interfaces;
 using WBHealthScheme.Infrastructure.Persistence;
-using Microsoft.Data.SqlClient;
+//using Microsoft.Data.SqlClient;
 using WBHealthScheme.Application.dtos;
 
 namespace WBHealthScheme.Infrastructure.Repositories
@@ -63,8 +63,8 @@ namespace WBHealthScheme.Infrastructure.Repositories
             return selfData.Concat(familyData).ToList();
         }
 
-        public async Task<List<Beneiciary_ward_resp_broto>>
-        GetwardByappAsync(string app_ID)
+        public async Task<List<BeneficiaryWardRespBroto>>
+        GetWardByAppIdAsync(string app_ID)
         {
             //var ward = await _context.EmployeeBasicInfos.Where(Y => Y.HrmsId == app_ID).
             //Select(Y => new Beneiciary_ward_resp_broto

@@ -9,7 +9,7 @@ public class WBHSDbContext : DbContext
 {
     public WBHSDbContext(DbContextOptions<WBHSDbContext> options) : base(options) { }
 
-    public DbSet<Beneiciary_ward_resp_broto> BenefWardDetails { get; set; }
+    public DbSet<BeneficiaryWardRespBroto> BenefWardDetails { get; set; }
     
     public DbSet<ReturnRatelistResponse> CodeDetails { get; set; }
     public DbSet<EmpPenBeneficiaryAuthenticationResponse> EmpPenBeneficiaryFetchAppid { get; set; }
@@ -29,9 +29,15 @@ public class WBHSDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Beneiciary_ward_resp_broto>().HasNoKey();
+        modelBuilder.Entity<BeneficiaryWardRespBroto>().HasNoKey();
         modelBuilder.Entity<ReturnRatelistResponse>().HasNoKey();
         modelBuilder.Entity<EmpPenBeneficiaryAuthenticationResponse>().HasNoKey();
+        modelBuilder.Entity<UnivBeneficiaryAuthenticationResponse>().HasNoKey();
+        modelBuilder.Entity<ClgBeneficiaryAuthenticationResponse>().HasNoKey();
+        modelBuilder.Entity<PnhytEmpBeneficiaryAuthenticationResponse>().HasNoKey();
+        modelBuilder.Entity<PnhytPenBeneficiaryAuthenticationResponse>().HasNoKey();
+        modelBuilder.Entity<AllBeneficiaryAuthenticationResponseByMobileNo>().HasNoKey();
+
         modelBuilder.Entity<WbhsApplicationIdEmpOnline>(entity =>
         {
             entity.ToTable("wbhs_APPLICATION_ID_EMP_ONLINE", "dbo");
@@ -338,15 +344,7 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.AdharNo).HasColumnName("Adhar_No").HasMaxLength(20);
         });
 
-        modelBuilder.Entity<UnivBeneficiaryAuthenticationResponse>().HasNoKey();
-
-        modelBuilder.Entity<ClgBeneficiaryAuthenticationResponse>().HasNoKey();
-
-        modelBuilder.Entity<PnhytEmpBeneficiaryAuthenticationResponse>().HasNoKey();
-
-        modelBuilder.Entity<PnhytPenBeneficiaryAuthenticationResponse>().HasNoKey();
-
-        modelBuilder.Entity<AllBeneficiaryAuthenticationResponseByMobileNo>().HasNoKey();
+        
 
     }
 }
