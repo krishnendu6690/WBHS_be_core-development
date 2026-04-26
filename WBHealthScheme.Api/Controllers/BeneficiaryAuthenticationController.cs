@@ -33,7 +33,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("univ/{uniqueId}")]
+        [HttpGet("univ/{unique-id}")]
         public async Task<IActionResult> GetByUniqueId(string uniqueId)
         {
             var result = await
@@ -43,7 +43,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("govtemp/{hrmsid}")]
+        [HttpGet("govtemp/{hrms-id}")]
         public async Task<IActionResult> GetwardByappid(string hrmsid)
         {
             var result = await
@@ -57,7 +57,7 @@ namespace WBHealthScheme.Api.Controllers
         }
 
 
-        [HttpGet("clg/{hrmsId}")]
+        [HttpGet("clg/{hrms-id}")]
         public async Task<IActionResult> GetByHrmsId(string hrmsId)
         {
             var result = await
@@ -67,7 +67,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("pnhytEmp/{iosmsId}")]
+        [HttpGet("pnhytEmp/{iosms-id}")]
         public async Task<IActionResult> GetByIosmsId(string iosmsId)
         {
             var result = await
@@ -77,7 +77,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("pnhytPen/{*appId}")]
+        [HttpGet("pnhytPen/{*app-id}")]
         public async Task<IActionResult> GetByPnhytPenAppId(string appId)
         {
             var result = await
@@ -87,7 +87,7 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
-        [HttpGet("govtEmpPen/{appId}")]
+        [HttpGet("govtEmpPen/{app-id}")]
         public async Task<IActionResult> GetbyAppliID(string appId)
         {
             var result = await _service.GetBeneficiaryEmpPenByAppIdAsync(appId);
@@ -96,7 +96,7 @@ namespace WBHealthScheme.Api.Controllers
             .Ok(result, "Enrollment fetched successfully"));
         }
         
-        [HttpGet("mobileNumber/{mobNumber}")]
+        [HttpGet("mobileNumber/{mob-number}")]
         public async Task<IActionResult> GetByMobileAll(string mobNumber)
         {
             var result = await
