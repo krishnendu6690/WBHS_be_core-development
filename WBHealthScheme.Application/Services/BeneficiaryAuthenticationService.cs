@@ -37,21 +37,27 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
 
-        #region govt_emp_pen
+    /// <summary>
+    /// Retrieves govt emplyee authentication details using the provided Hrms ID
+    /// </summary>
+    /// <param name="hrmsId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>
         public async Task<List<BeneficiaryWardRespBroto>>
-        GetWardByAppIdAsync(string app_ID)
+        GetWardByAppIdAsync(string hrmsId)
         {
-            if (string.IsNullOrWhiteSpace(app_ID))
+            if (string.IsNullOrWhiteSpace(hrmsId))
                 throw new BusinessRuleException("Enrollment ID is required");
-            if (app_ID.Length != 10 || !app_ID.All(char.IsDigit))
-                throw new BusinessRuleException("Invalid Enrollment ID");
+            if (hrmsId.Length != 10 || !hrmsId.All(char.IsDigit))
+                throw new BusinessRuleException("Invalid Hrms ID");
             var result = await
-            _repository.GetWardByAppIdAsync(app_ID);
+            _repository.GetWardByAppIdAsync(hrmsId);
             if (result == null || !result.Any())
                 throw new NotFoundException("Enrollment ID not found");
             return result;
         }
-        #endregion
+        
 
     /// <summary>
     /// Retrieves university beneficiary authentication details using the provided unique ID
