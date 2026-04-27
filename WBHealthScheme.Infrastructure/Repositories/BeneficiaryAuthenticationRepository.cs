@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using WBHealthScheme.Application.Dtos;
 using WBHealthScheme.Application.Interfaces;
 using WBHealthScheme.Infrastructure.Persistence;
-//using Microsoft.Data.SqlClient;
 using WBHealthScheme.Application.dtos;
 
 namespace WBHealthScheme.Infrastructure.Repositories
@@ -16,77 +15,20 @@ namespace WBHealthScheme.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<List<BeneficiaryAuthenticationResponse>>
-        GetBeneficiaryByMobileAsync(string mobileNumber)
-        {
-            var selfData = await _context.EmployeeBasicInfos
-            .Where(x => x.MobileNo == mobileNumber)
-            .Select(x => new BeneficiaryAuthenticationResponse
-            {
-                ApplicationId = x.AppId,
-                EmployeeId = x.EmpId,
-                BeneficiaryId = x.EmpId,
-                BeneficiaryName = (x.EmpFirstName ?? "") + " " +
-(x.EmpLastName ?? ""),
-                MobileNumber = x.MobileNo,
-                DateOfBirth = x.EmpDob,
-                MemberType = "SELF",
-                Relation = "Self",
-                RegistrationStatus = x.IsExists,
-                ValidUpto = null,
-                BloodGroup = null,
-                PhotoPath = null
-            })
-.ToListAsync();
-            var familyData = await (from family in _context.EmployeeFamilyMembers
-                                    join photo in _context.WbhsFamilyPhotoSignatures
-                                    on new { family.AppId, family.IdNo } equals new { photo.AppId, photo.IdNo }
-                                    into photoJoin
-                                    from photo in photoJoin.DefaultIfEmpty()
-                                    where family.MobileNo == mobileNumber
-                                    select new BeneficiaryAuthenticationResponse
-                                    {
-                                        ApplicationId = family.AppId,
-                                        EmployeeId = null,
-                                        BeneficiaryId = family.IdNo,
-                                        BeneficiaryName = family.Name,
-                                        MobileNumber = family.MobileNo,
-                                        DateOfBirth = family.Dob,
-                                        MemberType = "FAMILY",
-                                        Relation = family.MemberCode,
-                                        RegistrationStatus = family.IsExists,
-                                        ValidUpto = family.ValidUpTo,
-                                        BloodGroup = family.BloodGroup,
-                                        PhotoPath = photo != null ? photo.PhotoFtp : null
-                                    }).ToListAsync();
-
-            return selfData.Concat(familyData).ToList();
-        }
-
+        
         // ------------------------------------------------------
         // For Authentication: Govt Emplyee, By HRMS ID
         // ------------------------------------------------------
 
         public async Task<List<BeneficiaryWardRespBroto>>
         GetWardByAppIdAsync(string app_ID)
-        {
-            //var ward = await _context.EmployeeBasicInfos.Where(Y => Y.HrmsId == app_ID).
-            //Select(Y => new Beneiciary_ward_resp_broto
-            //{
-            //wardtmc="TATA-"+x.WardTmc + ",GOVT-" + x.WardGovt + "PRIVATE-" + x.WardName
-            //wardtmc = "Tata Medical Center-" + Y.WardTmc,
-            //wardgovt = "Government Hospital-" + Y.WardGovt,
-            //wardname = "Other Private Empanelled Hospital-" + Y.WardName,
-            //}
-            //).ToListAsync();
-            //return ward.ToList();
+        {            
             var param = new SqlParameter("@BEN_HRMS_D", app_ID);
             var result = await _context.BenefWardDetails
                         .FromSqlRaw("EXEC GET_WBHS_BENEFICIARY_HRMSID @BEN_HRMS_D", param)
                         .AsNoTracking()
                         .ToListAsync();
-            return result;
-    
+            return result;    
         }
 
         // ------------------------------------------------------

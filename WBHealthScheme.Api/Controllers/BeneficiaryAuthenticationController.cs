@@ -14,24 +14,7 @@ namespace WBHealthScheme.Api.Controllers
         public BeneficiaryAuthenticationController(IBeneficiaryAuthenticationService service)
         {
             _service = service;
-        }
-        /*[HttpGet("mobile/{mobileNumber}")]
-        public async Task<IActionResult> GetByMobile(string mobileNumber)
-        {
-            var result = await
-            _service.GetBeneficiaryByMobileAsync(mobileNumber);
-
-            //return Ok(new ApiResponse<List<BeneficiaryAuthenticationResponse>>
-            //{
-            //    Success = true,
-            //    Message = "Beneficiary fetched successfully",
-            //    Status = "200",
-            //    Data = result,
-            //    Errors = null
-            //});
-            return Ok(ApiResponse<List<BeneficiaryAuthenticationResponse>>
-                .Ok(result, "Beneficiary fetched successfully"));
-        }*/
+        }        
 
         // ------------------------------------------------------
         // API: For University, By Unique ID
