@@ -4,16 +4,25 @@ using WBHealthScheme.Application.Exceptions;
 using WBHealthScheme.Application.Interfaces;
 namespace WBHealthScheme.Application.Services
 {
+    /// <summary>
+    /// Provides business logic for beneficiary authentication operations.
+    /// </summary>
     public class BeneficiaryAuthenticationService :
     IBeneficiaryAuthenticationService
     {
         private readonly IBeneficiaryAuthenticationRepository _repository;
-        public
-        BeneficiaryAuthenticationService(IBeneficiaryAuthenticationRepository
-        repository)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BeneficiaryAuthenticationService"/> class.
+        /// </summary>
+        /// <param name="repository">
+        /// Repository used to access beneficiary authentication data.
+        /// </param>
+        public BeneficiaryAuthenticationService(IBeneficiaryAuthenticationRepository repository)
         {
             _repository = repository;
         }
+
         public async Task<List<BeneficiaryAuthenticationResponse>>
         GetBeneficiaryByMobileAsync(string mobileNumber)
         {
@@ -43,7 +52,15 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
         #endregion
-        
+
+    /// <summary>
+    /// Retrieves university beneficiary authentication details using the provided unique ID
+    /// after validating its format.
+    /// </summary>
+    /// <param name="uniqueId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>         
         public async Task<List<UnivBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByUniqueIdAsync(string uniqueId)
         {
@@ -61,7 +78,14 @@ namespace WBHealthScheme.Application.Services
             return result;
         }        
       
-        
+    /// <summary>
+    /// Retrieves collage beneficiary authentication details using the provided Hrms ID
+    /// after validating its format.
+    /// </summary>
+    /// <param name="hrmsId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>        
         public async Task<List<ClgBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByHrmsIdClgAsync(string hrmsId)
         {
@@ -78,6 +102,14 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
 
+    /// <summary>
+    /// Retrieves panchayat employee beneficiary authentication details using the provided IOSMS ID
+    /// after validating its format.
+    /// </summary>
+    /// <param name="iosmsId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of PnhytEmpBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>
         public async Task<List<PnhytEmpBeneficiaryAuthenticationResponse>>
         GetBeneficiaryByIosmsIdAsync(string iosmsId)
         {
@@ -94,6 +126,14 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
 
+    /// <summary>
+    /// Retrieves panchayat pensioner beneficiary authentication details using the provided Application ID
+    /// after validating its format.
+    /// </summary>
+    /// <param name="appId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>  
         public async Task<List<PnhytPenBeneficiaryAuthenticationResponse>>
         GetBeneficiaryPnhytPenByAppIdAsync(string appId)
         {
@@ -114,6 +154,14 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
 
+    /// <summary>
+    /// Retrieves govt. employee pensioner beneficiary authentication details using the provided Application ID
+    /// after validating its format.
+    /// </summary>
+    /// <param name="appliId">Unique identifier of the beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>  
         public async Task<List<EmpPenBeneficiaryAuthenticationResponse>>
         GetBeneficiaryEmpPenByAppIdAsync(string appliId)
         {
@@ -136,6 +184,14 @@ namespace WBHealthScheme.Application.Services
             return result;
         }
 
+    /// <summary>
+    /// Retrieves all beneficiary authentication details using the provided Mobile no
+    /// after validating its format.
+    /// </summary>
+    /// <param name="mobNumber">Mobile no. of Primary beneficiary</param>
+    /// <returns>
+    /// A list of UnivBeneficiaryAuthenticationResponse containing beneficiary details
+    /// </returns>
         public async Task<List<AllBeneficiaryAuthenticationResponseByMobileNo>>
         GetAllBeneficiaryByMobileAsync(string mobNumber)
         {

@@ -33,6 +33,10 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }*/
 
+        // ------------------------------------------------------
+        // API: For University, By Unique ID
+        // ------------------------------------------------------
+
         [HttpGet("univ/{uniqueId}")]
         public async Task<IActionResult> GetByUniqueId(string uniqueId)
         {
@@ -42,6 +46,10 @@ namespace WBHealthScheme.Api.Controllers
             return Ok(ApiResponse<List<UnivBeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
         }
+
+        // ------------------------------------------------------
+        // API: For Govt. Emplyee, By HRMS ID
+        // ------------------------------------------------------
 
         [HttpGet("govtemp/{hrmsId}")]
         public async Task<IActionResult> GetwardByappid(string hrmsid)
@@ -53,6 +61,9 @@ namespace WBHealthScheme.Api.Controllers
             .Ok(result, "Enrollment fetched successfully")); 
         }
 
+        // ------------------------------------------------------
+        // API: For Collage, By HRMS ID
+        // ------------------------------------------------------
 
         [HttpGet("clg/{hrmsId}")]
         public async Task<IActionResult> GetByHrmsId(string hrmsId)
@@ -64,6 +75,10 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
+        // ------------------------------------------------------
+        // API: For Panchayat Employee, By IOSMS ID
+        // ------------------------------------------------------
+
         [HttpGet("pnhytEmp/{iosmsId}")]
         public async Task<IActionResult> GetByIosmsId(string iosmsId)
         {
@@ -73,6 +88,10 @@ namespace WBHealthScheme.Api.Controllers
             return Ok(ApiResponse<List<PnhytEmpBeneficiaryAuthenticationResponse>>
                 .Ok(result, "Beneficiary fetched successfully"));
         }
+
+        // ------------------------------------------------------
+        // API: For Panchayat Pensioner, By Application ID
+        // ------------------------------------------------------
 
         [HttpGet("pnhytPen/{*appId}")]
         public async Task<IActionResult> GetByPnhytPenAppId(string appId)
@@ -84,6 +103,10 @@ namespace WBHealthScheme.Api.Controllers
                 .Ok(result, "Beneficiary fetched successfully"));
         }
 
+        // ------------------------------------------------------
+        // API: For Govt Employee Pensioner, By Application ID
+        // ------------------------------------------------------
+
         [HttpGet("govtEmpPen/{appId}")]
         public async Task<IActionResult> GetbyAppliID(string appId)
         {
@@ -92,7 +115,11 @@ namespace WBHealthScheme.Api.Controllers
             return Ok(ApiResponse<List<EmpPenBeneficiaryAuthenticationResponse>>
             .Ok(result, "Enrollment fetched successfully"));
         }
-        
+
+        // ------------------------------------------------------
+        // API: For All Enrolled User, By Mobile No.
+        // ------------------------------------------------------
+
         [HttpGet("mobile-Number/{mobileNumber}")]
         public async Task<IActionResult> GetByMobileAll(string mobileNumber)
         {
