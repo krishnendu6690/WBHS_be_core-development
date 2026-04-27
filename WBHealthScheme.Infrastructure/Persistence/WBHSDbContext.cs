@@ -215,12 +215,18 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.EmpLastName).HasColumnName("empLastName").HasMaxLength(100);
         });
 
+    /// <summary>
+    /// Configures the UnivAppIdOnline entity and maps it to the database table.
+    /// </summary>
         modelBuilder.Entity<UnivAppIdOnline>(entity =>
         {
+        /// Map to table: MBUCT_AppId_Univ_ONLINE in dbo schema
             entity.ToTable("MBUCT_AppId_Univ_ONLINE", "dbo");
-            
+
+        /// Define primary key    
             entity.HasKey(e => e.SlrNo);
 
+        /// Configure properties and column mappings
             entity.Property(e => e.SlrNo).HasColumnName("SLR_NO").HasMaxLength(200).IsRequired();
             entity.Property(e => e.PanId).HasColumnName("PAN_ID").HasMaxLength(200).IsRequired();
             entity.Property(e => e.AppId).HasColumnName("APP_ID").HasMaxLength(200).IsRequired();
@@ -232,12 +238,18 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.CreatTime).HasColumnName("CR_TIME").IsRequired();
         });
 
+    /// <summary>
+    /// Configures the UnivBasicInfo entity and maps it to the database table.
+    /// </summary>
         modelBuilder.Entity<UnivBasicInfo>(entity =>
         {
+        /// Map to table: MBUCT_AppId_Univ_ONLINE in dbo schema
             entity.ToTable("MBUCT_univBasicInfo_ONLINE", "dbo");
-            
+
+        /// Define primary key                
             entity.HasKey(e => e.SlrNo);
 
+        /// Configure properties and column mappings
             entity.Property(e => e.SlrNo).HasColumnName("SLR_NO").HasMaxLength(200).IsRequired();
             entity.Property(e => e.AppId).HasColumnName("APP_ID").HasMaxLength(200).IsRequired();
             entity.Property(e => e.PanId).HasColumnName("PAN_ID").HasMaxLength(50).IsRequired();
@@ -271,13 +283,19 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.Reyear).HasColumnName("reyear").HasMaxLength(3);
             entity.Property(e => e.AdharNo).HasColumnName("Adhar_No").HasMaxLength(20);
         });
-        
+
+    /// <summary>
+    /// Configures the UnivOfficeDetails entity and maps it to the database table.
+    /// </summary>
         modelBuilder.Entity<UnivOfficeDetails>(entity =>
         {
+        /// Map to table: MBUCT_AppId_Univ_ONLINE in dbo schema
             entity.ToTable("MBUCT_Univ_Office_Details", "dbo");
 
+        /// Define primary key
             entity.HasKey(e => e.SlrNo);
 
+        /// Configure properties and column mappings
             entity.Property(e => e.SlrNo).HasColumnName("SLR_NO").HasMaxLength(200).IsRequired();
             entity.Property(e => e.AppId).HasColumnName("app_id").HasMaxLength(200).IsRequired();
             entity.Property(e => e.PanId).HasColumnName("PAN_ID").HasMaxLength(11).IsRequired();
@@ -303,12 +321,19 @@ public class WBHSDbContext : DbContext
             entity.Property(e => e.WardGpb).HasColumnName("ward_gpb").HasMaxLength(200);
         });
 
+    /// <summary>
+    /// Configures the UnivfamilyDetails entity and maps it to the database table.
+    /// </summary>
+
         modelBuilder.Entity<UnivfamilyDetails>(entity =>
         {
+        /// Map to table: MBUCT_AppId_Univ_ONLINE in dbo schema
             entity.ToTable("MBUCT_Univ_familyDetails", "dbo");
 
+        /// Define primary key
             entity.HasKey(e => e.SlrNo);
 
+        /// Configure properties and column mappings
             entity.Property(e => e.SlrNo).HasColumnName("SLR_NO").HasMaxLength(200).IsRequired();
             entity.Property(e => e.AppId).HasColumnName("APP_ID").HasMaxLength(200).IsRequired();
             entity.Property(e => e.PanId).HasColumnName("PAN_ID").HasMaxLength(200).IsRequired();
