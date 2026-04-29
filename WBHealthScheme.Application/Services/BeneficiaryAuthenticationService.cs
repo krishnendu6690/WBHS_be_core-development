@@ -23,7 +23,7 @@ namespace WBHealthScheme.Application.Services
             _repository = repository;
         }
 
-        public async Task<List<BeneficiaryAuthenticationResponse>>
+        /*public async Task<List<BeneficiaryAuthenticationResponse>>
         GetBeneficiaryByMobileAsync(string mobileNumber)
         {
             if (string.IsNullOrWhiteSpace(mobileNumber))
@@ -35,7 +35,7 @@ namespace WBHealthScheme.Application.Services
             if (result == null || !result.Any())
                 throw new NotFoundException("Beneficiary not found");
             return result;
-        }
+        }*/
 
     /// <summary>
     /// Retrieves govt emplyee authentication details using the provided Hrms ID

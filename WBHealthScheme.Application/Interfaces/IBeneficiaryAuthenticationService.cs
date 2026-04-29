@@ -4,8 +4,8 @@ namespace WBHealthScheme.Application.Interfaces
 {
     public interface IBeneficiaryAuthenticationService
     {
-        Task<List<BeneficiaryAuthenticationResponse>>
-        GetBeneficiaryByMobileAsync(string mobileNumber);
+        //Task<List<BeneficiaryAuthenticationResponse>>
+        //GetBeneficiaryByMobileAsync(string mobileNumber);
 
         /// <summary>
         /// Retrieves ward details associated with the provided application ID.
